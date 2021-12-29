@@ -1,6 +1,6 @@
-import express from "express";
-import bodyParser from "body-parser";
-import { randomBytes } from "crypto";
+const express = require("express");
+const bodyParser = require("body-parser");
+const { randomBytes } = require("crypto");
 
 const app = express();
 app.use(bodyParser.json());
