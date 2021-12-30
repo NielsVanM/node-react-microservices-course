@@ -35,4 +35,6 @@ app.post("/posts/:id/comments", (req, res) => {
   res.status(201).send(comments);
 });
 
+app.post("/event", (req, res) => res.sendStatus(200));
+
 app.listen(4001, () => console.log("Listening on 4001"));
