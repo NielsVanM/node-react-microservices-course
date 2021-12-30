@@ -20,7 +20,7 @@ app.post("/posts/:id/comments", (req, res) => {
   const { content } = req.body;
 
   const comments = commentStore[req.params.id] || [];
-  comments.push({ id, content });
+  comments.push({ id, content, status: "pending" });
   commentStore[req.params.id] = comments;
 
   axios.post("http://localhost:4005/events", {
@@ -29,6 +29,7 @@ app.post("/posts/:id/comments", (req, res) => {
       id,
       content,
       postId: req.params.id,
+      status: "pending",
     },
   });
 

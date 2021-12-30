@@ -21,14 +21,12 @@ app.post("/events", (req, res) => {
       posts[id] = { id, title, comments: [] };
       break;
     case "COMMENT_CREATED":
-      const { commentId, content, postId } = data;
+      const { commentId, content, postId, status } = data;
       const post = posts[postId];
-      post.comments.push({ commentId, content });
+      post.comments.push({ commentId, content, status });
       posts[postId] = post;
       break;
   }
-
-  console.log(posts);
 
   res.sendStatus(200);
 });
