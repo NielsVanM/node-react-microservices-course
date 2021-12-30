@@ -23,12 +23,12 @@ app.post("/posts", async (req, res) => {
 
   res.status(201).send(postList[id]);
 
-  await axios.post("http://localhost:4005/event", {
+  await axios.post("http://localhost:4005/events", {
     type: "POST_CREATED",
     data: postList[id],
   });
 });
 
-app.post("/event", (req, res) => res.sendStatus(200));
+app.post("/events", (req, res) => res.sendStatus(200));
 
 app.listen(4000, () => console.log("Listening on 4000"));
