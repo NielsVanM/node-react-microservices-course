@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const commentStore = JSON.parse(fs.readFileSync("data.json"));
+const commentStore = {};
 
 app.get("/posts/:id/comments", (req, res) => {
   res.send(commentStore[req.params.id] || []);
