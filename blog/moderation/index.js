@@ -5,21 +5,25 @@ const axios = require("axios");
 const app = express();
 app.use(bodyParser.json());
 
-app.post("/events", async (req, res) => {
+app.post("/events", (req, res) => {
   const { type, data } = req.body;
 
   switch (type) {
     case "COMMENT_CREATED":
       const status = data.content.includes("orange") ? "rejected" : "approved";
 
-      await axios.post("http://localhost:4005/events", {
-        type: "COMMENT_MODERATED",
-        data: {
-          id: data.id,
-          postId: data.postId,
-          status: status,
-        },
-      });
+      setTimeout(
+        async () =>
+          await axios.post("http://localhost:4005/events", {
+            type: "COMMENT_MODERATED",
+            data: {
+              id: data.id,
+              postId: data.postId,
+              status: status,
+            },
+          }),
+        10000
+      );
   }
 
   res.sendStatus(200);
