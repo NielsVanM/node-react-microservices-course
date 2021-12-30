@@ -2,12 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { randomBytes } = require("crypto");
 const cors = require("cors");
+const fs = require("fs");
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const commentStore = {};
+const commentStore = JSON.parse(fs.readFileSync("data.json"));
 
 app.get("/posts/:id/comments", (req, res) => {
   res.send(commentStore[req.params.id] || []);

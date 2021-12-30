@@ -2,12 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { randomBytes } = require("crypto");
 const cors = require("cors");
+const fs = require("fs");
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const postList = {};
+const postList = JSON.parse(fs.readFileSync("data.json"));
 
 app.get("/posts", (req, res) => {
   res.send(postList);
