@@ -7,7 +7,7 @@ export const PostCreate = () => {
   const sendForm = async (event) => {
     event.preventDefault();
 
-    await axios.post("http://posts.com/posts", {
+    await axios.post("http://posts.com/posts/create", {
       title: title,
     });
 
