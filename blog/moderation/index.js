@@ -14,7 +14,7 @@ app.post("/events", (req, res) => {
 
       setTimeout(
         async () =>
-          await axios.post("http://localhost:4005/events", {
+          await axios.post("http://event-bus-srv:4005/events", {
             type: "COMMENT_MODERATED",
             data: {
               id: data.id,
